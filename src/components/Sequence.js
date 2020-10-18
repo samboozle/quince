@@ -3,7 +3,13 @@ import { Howl } from 'howler';
 
 import { Channel } from './';
 
-export default ({ drumKit }) => {
+export default (props) => {
+
+  const { 
+    addChannel, addStepToChannel, cycleSamples, 
+    drumKit, playing, quince, removeChannel,
+    removeStepFromChannel, tick, toggleStep
+  } = props;
 
   const kit = new Howl({
     src: [ drumKit.sample ],
@@ -22,18 +28,38 @@ export default ({ drumKit }) => {
     // generates a .json file -- this is what I'm reducing my drumKit from.
   });
 
-  const renderPads = _ => {
-    return Object.entries(kit._sprite).map(([ drum, [ _, duration ] ], idx) => {
+  const renderChannels = _ => {
+    return quince.channels.map(({ sample, steps }, idx) => {
+      let key = "ch-" + idx;
+      let activeStep = tick % steps.length;
       return (
         <Channel
-          callback={ _ => kit.play(drum) }
-          drumName={ drum }
-          duration={ duration }
-          key={ "channel-" + idx }
+          activeStep={ activeStep }
+          addStep={ _ => addStepToChannel(idx) }
+          chIdx={ idx }
+          sample={ sample }
+          cycleSamples={ _ => cycleSamples(idx, sample) }
+          key={ key }
+          playDrums={ _ => kit.play(sample) }
+          playing={ playing }
+          removeChannel={ _ => removeChannel(idx) }
+          removeStep={ _ => removeStepFromChannel(idx) }
+          steps={ steps }
+          toggleStep={ toggleStep(idx) }
         />
-      );
+      )
     });
   }
 
-  return <>{ renderPads() }</>;
-};
+  return (
+    <>
+      { renderChannels() }
+      <div
+        onClick={ addChannel }
+        className="p-2 border-4 border-blue-800 hover:bg-yellow-200 w-40 h-12 flex justify-center items-center"
+      >
+        Add Channel
+      </div>
+    </>
+  );
+}
