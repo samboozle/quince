@@ -1,0 +1,30 @@
+{
+  "name": "Vinyl",
+  "sample": "/audio-sprites/vinyl.mp3",
+  "spritemap": {
+    "cymbal": {
+      "start": 0,
+      "end": 6.466077097505669
+    },
+    "fx": {
+      "start": 8,
+      "end": 8.904036281179138
+    },
+    "hi-hat-closed": {
+      "start": 10,
+      "end": 10.714897959183673
+    },
+    "hi-hat-open": {
+      "start": 12,
+      "end": 14.19047619047619
+    },
+    "kick": {
+      "start": 16,
+      "end": 16.820181405895692
+    },
+    "snare": {
+      "start": 18,
+      "end": 18.816439909297053
+    }
+  }
+}

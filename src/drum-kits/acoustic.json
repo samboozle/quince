@@ -1,0 +1,30 @@
+{
+  "name": "Acoustic",
+  "sample": "/audio-sprites/acoustic.mp3",
+  "spritemap": {
+    "cymbal": {
+      "start": 0,
+      "end": 3.9423356009070294
+    },
+    "fx": {
+      "start": 5,
+      "end": 5.642403628117914
+    },
+    "hi-hat-closed": {
+      "start": 7,
+      "end": 7.725170068027211
+    },
+    "hi-hat-open": {
+      "start": 9,
+      "end": 9.66031746031746
+    },
+    "kick": {
+      "start": 11,
+      "end": 11.593786848072563
+    },
+    "snare": {
+      "start": 13,
+      "end": 13.95458049886621
+    }
+  }
+}
