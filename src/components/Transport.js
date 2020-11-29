@@ -19,9 +19,10 @@ const Transport = props => {
       props.changeTempo(queuedTempoChange);
       setQueuedTempoChange(0);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.currentTick]);
 
-  const changeTempo = offset => {
+  const handleChangeTempo = offset => {
     props.playing
       ? setQueuedTempoChange(queuedTempoChange + offset)
       : props.changeTempo(offset);
@@ -43,13 +44,13 @@ const Transport = props => {
       <div className="flex flex-col justify-between mr-1">
         <div
           className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => changeTempo(1) }
+          onClick={ _ => handleChangeTempo(1) }
         >
           +
         </div>
         <div
           className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => changeTempo(-1) }
+          onClick={ _ => handleChangeTempo(-1) }
         >
           -
         </div>
@@ -57,13 +58,13 @@ const Transport = props => {
       <div className="flex flex-col justify-between mr-1">
         <div
           className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => changeTempo(10) }
+          onClick={ _ => handleChangeTempo(10) }
         >
           +10
         </div>
         <div
           className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => changeTempo(-10) }
+          onClick={ _ => handleChangeTempo(-10) }
         >
           -10
         </div>
