@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default props => {
-  const { predicate, title, selected, items, toggler, selector } = props;
+  const { title, selected, items, selector } = props;
+  const [toggled, setToggled] = useState(false);
+
+  const toggle = _ => setToggled(!toggled);
 
   const list = arr => {
     return (
@@ -25,15 +28,15 @@ export default props => {
   return (
     <div
       className="relative flex flex-row bg-white rounded shadow-sm mx-1 w-48 justify-center"
-      onMouseEnter={ toggler }
-      onMouseLeave={ toggler }
+      onMouseEnter={ toggle }
+      onMouseLeave={ toggle }
     >
       <div
         className="mx-1 p-3 bg-transparent"
       >
         { title }: { selected }
       </div>
-      { predicate && list(items) }
+      { toggled && list(items) }
     </div>
   );
 }

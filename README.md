@@ -5,7 +5,9 @@ This app is in its MVP form and is, admittedly, janky. I hope you enjoy it regar
 
 **Learning Objectives:**
 
-Among my learning objectives for **quince** was to get a handle on React's `useReducer` hook, which makes more sense than Redux for a project this small (and which, rather happily, feels like writing Elm :D).
+~~Among my learning objectives for **quince** was to get a handle on React's `useReducer` hook, which makes more sense than Redux for a project this small (and which, rather happily, feels like writing Elm :D).~~
+
+I have decided to use Redux with this project after all; the code was unweildy, at least to read.
 
 **Todo:**
 

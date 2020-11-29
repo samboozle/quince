@@ -1,4 +1,4 @@
-export const bootsAndCats = {
+const bootsAndCats = {
   title: "Boots 'n' Cats",
   tempo: 120,
   channels: [
@@ -8,13 +8,13 @@ export const bootsAndCats = {
   ]
 }
 
-export const emptyQuince = {
+const emptyQuince = {
   title: "New Quince",
   tempo: 120,
   channels: []
 }
 
-export const fifteenStep = {
+const fifteenStep = {
   title: "Fifteen Step",
   tempo: 100,
   channels: [
@@ -24,3 +24,13 @@ export const fifteenStep = {
     { sample: "fx", steps: [ 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 ] },
   ]
 }
+
+export default [
+  emptyQuince,
+  bootsAndCats,
+  fifteenStep
+]
+.reduce((acc, quince) => {
+  acc[quince.title] = quince;
+  return acc;
+}, {});
