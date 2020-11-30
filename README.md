@@ -11,7 +11,6 @@ I have decided to use Redux with this project after all; the code was unweildy, 
 
 **Todo:**
 
-* MOBILE SUPPORT [ ]
 * Custom hook for playback [x]
 * Per-channel mute button
 * More presets!
