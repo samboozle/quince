@@ -11,12 +11,12 @@ I have decided to use Redux with this project after all; the code was unweildy, 
 
 **Todo:**
 
-* MOBILE SUPPORT -- migrate to webm
-* Custom hook for playback
+* MOBILE SUPPORT [ ]
+* Custom hook for playback [x]
 * Per-channel mute button
 * More presets!
 * More drumkits!
-* Code organization (may refactor to use context api)
+* Code organization [x]
 * Clearer, friendlier UI
 * More attractive styling (including icons)
 * More responsive layout
