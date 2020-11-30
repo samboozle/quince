@@ -28,6 +28,19 @@ const Transport = props => {
       : props.changeTempo(offset);
   };
 
+  const curriedTempo = offset => _ => handleChangeTempo(offset);
+
+  const littleWhiteButton = (fn, text) => (
+      <div className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200" onClick={fn}>
+       { text }
+      </div>
+  );
+
+  const buttonGroups = [
+    [{ fn: curriedTempo(1),  text: "+"   }, { fn: curriedTempo(-1),  text: "-"   }],
+    [{ fn: curriedTempo(10), text: "+10" }, { fn: curriedTempo(-10), text: "-10" }]
+  ];
+
   return (
     <div className="flex flex-row my-2 bg-yellow-500 p-2 w-full rounded shadow-sm">
       <div
@@ -41,34 +54,12 @@ const Transport = props => {
       >
         Tempo: { props.selectedQuince.tempo }bpm
       </div>
-      <div className="flex flex-col justify-between mr-1">
-        <div
-          className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => handleChangeTempo(1) }
-        >
-          +
-        </div>
-        <div
-          className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => handleChangeTempo(-1) }
-        >
-          -
-        </div>
-      </div>
-      <div className="flex flex-col justify-between mr-1">
-        <div
-          className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => handleChangeTempo(10) }
-        >
-          +10
-        </div>
-        <div
-          className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200"
-          onClick={ _ => handleChangeTempo(-10) }
-        >
-          -10
-        </div>
-      </div>
+      { buttonGroups.map(group => (
+          <div className="flex flex-col justify-between mr-1">
+            { group.map(({ fn, text }) => littleWhiteButton(fn, text)) }
+          </div>
+        ))
+      }
       <div className="mx-1 p-3 rounded shadow-sm bg-white">
         Tick: { props.currentTick }
       </div>
