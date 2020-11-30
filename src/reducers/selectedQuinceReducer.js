@@ -52,16 +52,16 @@ export default (selectedQuince = quinces["New Quince"], { type, payload }) => {
         channels: selectedQuince.channels.reduce((chAcc, channel, chIdx) => {
           return chIdx === payload.channelIndex
             ? [...chAcc, {
-              ...channel,
-              steps: channel.steps.reduce((stAcc, step, stIdx) => {
-                let toggle = stIdx === payload.stepIndex;
-                return step && toggle
-                  ? [...stAcc, 0]
-                  : toggle
-                    ? [...stAcc, 1]
-                    : [...stAcc, step];
-              }, [])
-            }]
+                ...channel,
+                steps: channel.steps.reduce((stAcc, step, stIdx) => {
+                  let toggle = stIdx === payload.stepIndex;
+                  return step && toggle
+                    ? [...stAcc, 0]
+                    : toggle
+                      ? [...stAcc, 1]
+                      : [...stAcc, step];
+                }, [])
+              }]
             : [...chAcc, channel];
         }, [])
       }
