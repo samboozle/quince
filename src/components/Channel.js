@@ -57,13 +57,13 @@ const Channel = props => {
       </div>
       <div
         className="ml-auto flex self-center self-end shadow rounded-full border-blue-800 border-2 active:shadow-none w-10 h-10 justify-center items-center hover:bg-yellow-200"
-        onClick={_ => props.addStepToChannel(props.chIdx) }
+        onClick={ _ => props.addStepToChannel(props.chIdx) }
       >
         +
       </div>
       <div
         className="ml-1 flex self-center self-end shadow rounded-full border-blue-800 border-2 active:shadow-none w-10 h-10 justify-center items-center hover:bg-yellow-200"
-        onClick={_ => props.removeStepFromChannel(props.chIdx) }
+        onClick={ _ => props.removeStepFromChannel(props.chIdx) }
       >
         -
       </div>

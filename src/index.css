@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+/*
+  This is where classes with @apply directives will go.
+*/
+
+@tailwind utilities;
