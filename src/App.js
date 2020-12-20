@@ -39,14 +39,14 @@ const App = props => {
   }
 
   return (
-    <>
+    <div className="bg-gray-300 h-screen">
       <Navbar />
-      <div className="container mx-auto h-auto pt-12">
+      <div className="container mx-auto h-auto pt-16">
         <Transport />
         { props.help && helpMessage() }
         <Sequence />
       </div>
-    </>
+    </div>
   );
 }
 

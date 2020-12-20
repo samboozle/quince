@@ -31,9 +31,9 @@ const Transport = props => {
   const curriedTempo = offset => _ => handleChangeTempo(offset);
 
   const littleWhiteButton = (fn, text) => (
-      <div className="text-sm text-center px-1 bg-white rounded shadow-sm hover:bg-yellow-200" onClick={fn}>
+      <button className="select-none text-center px-1  bg-white rounded active:shadow-inner" onClick={fn}>
        { text }
-      </div>
+      </button>
   );
 
   const buttonGroups = [
@@ -42,17 +42,17 @@ const Transport = props => {
   ];
 
   return (
-    <div className="flex flex-row my-2 bg-yellow-500 p-2 w-full rounded shadow-sm">
-      <div
-        className="mr-1 p-3 rounded shadow-sm bg-white hover:bg-yellow-200 active:shadow-none"
+    <div className="flex flex-row my-2 green-on-gray p-2 w-full rounded text-xl">
+      <button
+        className={ "mr-1 p-3 rounded bg-white focus:outline-none text-xl " + (props.playing && "shadow-depressed text-red-400") }
         onClick={ props.togglePlaying }
       >
-        { props.playing ? "Stop" : "Play" }
-      </div>
+        { props.playing ? "||" : "|>" }
+      </button>
       <div 
-        className="mx-1 p-3 rounded shadow-sm bg-white flex flex-row align-center"
+        className="mx-1 p-3 rounded active:shadow-inner bg-white flex flex-row align-center"
       >
-        Tempo: { props.selectedQuince.tempo }bpm
+        { props.selectedQuince.tempo }bpm
       </div>
       { buttonGroups.map(group => (
           <div className="flex flex-col justify-between mr-1">
@@ -60,9 +60,9 @@ const Transport = props => {
           </div>
         ))
       }
-      <div className="mx-1 p-3 rounded shadow-sm bg-white">
+      {/* <div className="mx-1 p-3 rounded active:shadow-inner bg-white">
         Tick: { props.currentTick }
-      </div>
+      </div> */}
       <DropdownMenu
         title={ "Drumkit" }
         items={ Object.keys(props.drumkits) }
@@ -76,7 +76,7 @@ const Transport = props => {
         selector={ props.selectQuince }
       />
       <div
-        className="mx-1 p-3 rounded shadow-sm bg-white hover:bg-yellow-200 active:shadow-none"
+        className="mx-1 p-3 rounded active:shadow-inner bg-white hover:bg-yellow-200 active:shadow-none"
         onClick={ props.toggleHelp }
       >
         Help!
