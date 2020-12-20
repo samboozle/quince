@@ -7,12 +7,10 @@ const addStepToChannel = channelIndex => {
   }
 }
 
-const changeTempo = adjustment => {
-  return {
+const changeTempo = adjustment => ({
     type: "CHANGE_TEMPO",
     payload: adjustment
-  }
-}
+});
 
 // thunkable -- references global state :/
 const cycleChannelSamples = (channelIndex, currentSample) => {
@@ -48,7 +46,7 @@ const selectDrumkit = name => {
   return (dispatch, getState) => {
     let { drumkits } = getState();
     let drumkit = drumkits[name];
-    return dispatch({
+    dispatch({
       type: "SELECT_DRUMKIT",
       payload: { name, drumkit }
     });
@@ -60,7 +58,7 @@ const selectQuince = name => {
   return (dispatch, getState) => {
     let { quinces } = getState();
     let payload = quinces[name];
-    return dispatch({
+    dispatch({
       type: "SELECT_QUINCE",
       payload
     });

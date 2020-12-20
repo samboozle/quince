@@ -10,17 +10,10 @@ const tick = (prev = 0, { type }) => {
   switch (type) {
     case "TICK":
       return prev + 1;
+    case "TOGGLE_PLAYING":
+      return 0;
     default:
       return prev;
-  }
-}
-
-const toggleDrumkitDropdown = (active = false, { type }) => {
-  switch (type) {
-    case "TOGGLE_DRUMKIT_DROPDOWN":
-      return !active;
-    default:
-      return active;
   }
 }
 
@@ -30,15 +23,6 @@ const toggleHelp = (help = false, { type }) => {
       return !help;
     default:
       return help;
-  }
-}
-
-const toggleQuinceDropdown = (active = false, { type }) => {
-  switch (type) {
-    case "TOGGLE_QUINCE_DROPDOWN":
-      return !active;
-    default:
-      return active;
   }
 }
 
@@ -54,10 +38,8 @@ const togglePlaying = (playing = false, { type }) => {
 export default combineReducers({
   currentTick: tick,
   drumkits: _ => drumkits,
-  drumkitDropdown: toggleDrumkitDropdown,
   help: toggleHelp,
   playing: togglePlaying,
-  quinceDropdown: toggleQuinceDropdown,
   quinces: _ => quinces,
   samples: _ => ["kick", "snare", "hat-open", "hat-closed", "cymbal", "fx"],
   selectedDrumkit,
