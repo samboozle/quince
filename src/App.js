@@ -39,8 +39,8 @@ const App = props => {
   }
 
   return (
-    <div className="bg-gray-300 h-screen">
-      <Navbar />
+    <div className={`${props.theme}-page h-screen`}>
+      <Navbar theme={props.theme} />
       <div className="container mx-auto h-auto pt-16">
         <Transport />
         { props.help && helpMessage() }
@@ -53,7 +53,8 @@ const App = props => {
 const mapStateToProps = state => ({
   help: state.help,
   playing: state.playing,
-  selectedQuince: state.selectedQuince
+  selectedQuince: state.selectedQuince,
+  theme: state.selectedDrumkit.name,
 });
 
 const actions = {

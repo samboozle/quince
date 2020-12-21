@@ -4,9 +4,9 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    boxShadow: {
-      'depressed': 'inset 0px 0px 3px 3px rgba(0, 0, 0, 0.12)'
-    },
+    // boxShadow: {
+    //   'Electro': 'inset 0px 0px 2px 0px #D9F99D'
+    // },
     colors: {
       red: colors.red,
       rose: colors.rose,
@@ -22,6 +22,7 @@ module.exports = {
   },
   variants: {
     extend: {
+      backgroundColor: ['active'],
       boxShadow: ['active'],
     },
   },

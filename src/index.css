@@ -14,12 +14,81 @@ body {
   @apply font-mono
 }
 
-.red-on-yellow {
-  @apply bg-yellow-300 text-red-700
+.bubble {
+  @apply p-1 flex items-center justify-center
 }
 
-.green-on-gray {
+.btn {
+  @apply focus:outline-none flex items-center justify-center px-1
+}
+
+.beat {
+  @apply h-8 w-8 hover:opacity-75 mx-1
+}
+
+/*
+  Theme for Acoustic drumkit
+*/
+
+
+/* 
+  Theme for Electro drumkit
+*/
+
+.Electro {
   @apply bg-gray-600 text-green-400
 }
+
+.Electro-page {
+  @apply bg-gray-300
+}
+
+.Electro-active {
+  @apply beat bg-red-400
+}
+
+.Electro-on {
+  @apply beat bg-green-400
+}
+
+.Electro-off {
+  @apply beat bg-gray-400
+}
+
+.Electro-b {
+  @apply border-b border-green-400
+}
+
+.Electro-r {
+  @apply border-r border-green-400
+}
+
+.Electro-t {
+  @apply border-t border-green-400
+}
+
+.Electro-bubble {
+  @apply bubble text-green-400 border-t border-b border-green-400
+}
+
+.Electro-stacking {
+  @apply border-t-0
+}
+
+.Electro-hover {
+  @apply hover:text-red-400
+}
+
+.Electro-button {
+  @apply btn bg-green-400 text-gray-600 hover:bg-green-600 active:bg-red-600
+}
+
+.Electro-button-red {
+  @apply btn bg-red-400 text-gray-600 hover:bg-red-600 active:bg-green-600
+}
+
+/*
+  Theme for Vinyl drumkit
+*/
 
 @tailwind utilities;

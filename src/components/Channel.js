@@ -11,8 +11,14 @@ import {
 
 const Channel = props => {
 
+  const theme = props.selectedDrumkit.name;
+
   const playDrums = _ => props.selectedDrumkit.drumkit.play(props.sample);
   const activeStep = props.currentTick % props.steps.length;
+  const buttons = [
+    { text: "+", fn: _ => props.addStepToChannel(props.chIdx)      },
+    { text: "-", fn: _ => props.removeStepFromChannel(props.chIdx) },
+  ];
 
   useEffect(_ => {
     const isActive = !!props.steps[activeStep];
@@ -22,50 +28,41 @@ const Channel = props => {
   });
 
   return (
-    <div className="flex flex-row my-1 w-full items-center">
-      <div className="p-2 border-4 border-blue-800 w-48 h-12 flex justify-between items-center">
+    <div className={ `${theme}-b flex w-full items-center py-1` }>
+      <div className={`${theme}-r pr-2 flex justify-between items-start w-48 h-full`}>
         <div
-          className="flex items-center justify-center w-24 h-8 border-blue-800 border-2 hover:bg-yellow-200"
+          className={`${theme}-button`}
           onClick={_ => props.cycleChannelSamples(props.chIdx, props.sample) }
         >
           { props.sample }
         </div>
         <div
-          className="flex items-center justify-center w-8 h-8 bg-white border-blue-800 border-2 hover:bg-yellow-200"
+          className="flex items-center justify-center w-8 h-8 bg-white border-2 border-blue-800 hover:bg-yellow-200"
           onClick={ playDrums }
         >
           !
         </div>
         <div
-          className="flex justify-center items-center w-8 h-8 border-2 border-blue-800 hover:bg-red-400"
+          className="flex items-center justify-center w-8 h-8 border-2 border-blue-800 hover:bg-red-400"
           onClick={ _ => props.removeChannel(props.chIdx) }
         >
-          x
+          X
         </div>
       </div>
-      <div className="mx-2 border-2 border-blue-800 w-auto flex flex-row flex-wrap items-center">
+      <div className="flex flex-wrap items-center px-1">
         { props.steps.map((step, idx) => {
-          let active = activeStep === idx;
+          let active = props.playing && activeStep === idx;
           return (
             <div
-              className={ "flex justify-center items-center m-1 w-8 h-8 border-2 border-blue-800 hover:border-green-400" + ( active ? " bg-green-300" : step ? " bg-blue-400" : " bg-gray-200") }
+              className={ `${theme}-${active ? "active" : step ? "on" : "off" }` }
               key={ "ch-" + props.chIdx + "st-" + idx }
               onClick={ _ => props.toggleStep(props.chIdx, idx) }
             />
           );
         }) }
       </div>
-      <div
-        className="ml-auto flex self-center self-end shadow rounded-full border-blue-800 border-2 active:shadow-none w-10 h-10 justify-center items-center hover:bg-yellow-200"
-        onClick={ _ => props.addStepToChannel(props.chIdx) }
-      >
-        +
-      </div>
-      <div
-        className="ml-1 flex self-center self-end shadow rounded-full border-blue-800 border-2 active:shadow-none w-10 h-10 justify-center items-center hover:bg-yellow-200"
-        onClick={ _ => props.removeStepFromChannel(props.chIdx) }
-      >
-        -
+      <div className="flex ml-auto">
+        { buttons.map(({ text, fn })=> <div key={`btn-${text}`} className={`${theme}-button w-6`} onClick={fn}>{ text }</div>) }
       </div>
     </div>
   );

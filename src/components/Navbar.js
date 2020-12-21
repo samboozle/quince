@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Navbar = _ => {
+const Navbar = ({ theme }) => {
   return (
-    <nav className="flex top-0 w-full items-center p-4 green-on-gray fixed">
+    <nav className={`${theme} flex top-0 w-full items-center p-4 fixed`}>
       <div className="flex items-center w-full">
         <span className="text-xl font-semibold px-2">
           quince

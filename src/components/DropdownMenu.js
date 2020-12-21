@@ -27,7 +27,7 @@ export default props => {
 
   return (
     <div
-      className="relative flex flex-row bg-white rounded shadow-sm mx-1 justify-center"
+      className={ `relative flex flex-row justify-center ${props.theme}-bubble` }
       onMouseEnter={ toggle }
       onMouseLeave={ toggle }
     >

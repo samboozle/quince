@@ -25,20 +25,23 @@ const Sequence = props => {
   }
 
   return (
-    <>
-      { renderChannels() }
+    <div className={ `${props.theme} py-2 px-2 mb-` }>
       <div
         onClick={ props.addChannel }
-        className="p-2 border-4 border-blue-800 hover:bg-yellow-200 w-40 h-12 flex justify-center items-center"
+        className={ `${props.theme}-button w-40 h-12 mb-1` }
       >
         Add Channel
       </div>
-    </>
+      <div className={ `${props.theme}-t mt-2` }>
+        { renderChannels() }
+      </div>
+    </div>
   );
 }
 
 const mapStateToProps = state => ({
   selectedQuince: state.selectedQuince,
+  theme: state.selectedDrumkit.name,
 });
 
 const actions = {
