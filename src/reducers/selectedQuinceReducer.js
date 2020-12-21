@@ -1,6 +1,6 @@
 import quinces from '../quince-presets';
 
-export default (selectedQuince = quinces["New Quince"], { type, payload }) => {
+export default (selectedQuince = quinces["Fifteen Step"], { type, payload }) => {
   switch (type) {
     case "ADD_CHANNEL":
       return {

@@ -1,8 +1,8 @@
 import drumkits from '../drum-kits';
 
 const init = {
-  name: "Acoustic",
-  drumkit: drumkits["Acoustic"]
+  name: "Electro",
+  drumkit: drumkits["Electro"]
 }
 
 export default (selectedDrumkit = init, { type, payload }) => {
