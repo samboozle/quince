@@ -5,12 +5,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     // boxShadow: {
-    //   'Electro': 'inset 0px 0px 2px 0px #D9F99D'
+    //   'Electro': 'inset 0px 0px 2px 0px #D9F99D',
+    //   // 'Acoustic': '0 10px 15px -3px #FFE4E6'
     // },
     colors: {
+      amber: colors.amber,
       red: colors.red,
       rose: colors.rose,
       gray: colors.coolGray,
+      grey: colors.warmGray,
       green: colors.lime,
       white: colors.white,
       yellow: colors.yellow,

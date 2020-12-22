@@ -19,17 +19,73 @@ body {
 }
 
 .btn {
-  @apply focus:outline-none flex items-center justify-center px-1
+  @apply focus:outline-none flex items-center justify-center px-1 select-none
 }
 
 .beat {
-  @apply h-8 w-8 hover:opacity-75 mx-1
+  @apply h-8 w-8 hover:opacity-75 mx-1 mb-1
 }
 
 /*
   Theme for Acoustic drumkit
 */
 
+.Acoustic {
+  @apply bg-yellow-700 text-red-200 rounded-lg
+}
+
+.Acoustic-page {
+  @apply bg-grey-200
+}
+
+.Acoustic-active {
+  @apply beat bg-green-300 rounded-lg
+}
+
+.Acoustic-on {
+  @apply beat bg-red-400 rounded-lg
+}
+
+.Acoustic-off {
+  @apply beat bg-grey-200 rounded-lg
+}
+
+.Acoustic-b {
+  @apply border-b border-red-400
+}
+
+.Acoustic-r {
+  @apply border-r border-red-400
+}
+
+.Acoustic-l {
+  @apply border-l border-red-400
+}
+
+.Acoustic-t {
+  @apply border-t border-red-400
+}
+
+.Acoustic-bubble {
+  @apply bubble bg-yellow-700 text-red-200 shadow-lg rounded-lg
+}
+
+.Acoustic-button {
+  @apply btn bg-red-200 text-yellow-700 rounded-lg shadow-lg hover:bg-green-600 active:bg-red-600
+}
+/*
+.Acoustic-stacking {
+  @apply border-t-0
+}
+
+.Acoustic-hover {
+  @apply hover:text-red-400
+}
+
+
+.Acoustic-button-red {
+  @apply btn bg-red-400 text-gray-600 hover:bg-red-600 active:bg-green-600
+} */
 
 /* 
   Theme for Electro drumkit
@@ -61,6 +117,10 @@ body {
 
 .Electro-r {
   @apply border-r border-green-400
+}
+
+.Electro-l {
+  @apply border-l border-green-400
 }
 
 .Electro-t {

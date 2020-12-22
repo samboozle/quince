@@ -15,9 +15,14 @@ const Channel = props => {
 
   const playDrums = _ => props.selectedDrumkit.drumkit.play(props.sample);
   const activeStep = props.currentTick % props.steps.length;
-  const buttons = [
-    { text: "+", fn: _ => props.addStepToChannel(props.chIdx)      },
-    { text: "-", fn: _ => props.removeStepFromChannel(props.chIdx) },
+  const buttonsLeft  = [
+    { text: props.sample, className: `${theme}-button h-8 w-28`,     fn: _ => props.cycleChannelSamples(props.chIdx, props.sample) },
+    { text: "!",          className: `${theme}-button h-8 w-8 ml-2`, fn: playDrums },
+    { text: "X",          className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeChannel(props.chIdx) },
+  ];
+  const buttonsRight = [
+    { text: "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(props.chIdx) },
+    { text: "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(props.chIdx) },
   ];
 
   useEffect(_ => {
@@ -28,26 +33,11 @@ const Channel = props => {
   });
 
   return (
-    <div className={ `${theme}-b flex w-full items-center py-1` }>
-      <div className={`${theme}-r pr-2 flex justify-between items-start w-48 h-full`}>
-        <div
-          className={`${theme}-button`}
-          onClick={_ => props.cycleChannelSamples(props.chIdx, props.sample) }
-        >
-          { props.sample }
-        </div>
-        <div
-          className="flex items-center justify-center w-8 h-8 bg-white border-2 border-blue-800 hover:bg-yellow-200"
-          onClick={ playDrums }
-        >
-          !
-        </div>
-        <div
-          className="flex items-center justify-center w-8 h-8 border-2 border-blue-800 hover:bg-red-400"
-          onClick={ _ => props.removeChannel(props.chIdx) }
-        >
-          X
-        </div>
+    <div className={ `${theme}-b flex w-full items-start pt-1` }>
+      <div className={`${theme}-r pr-2 mb-1 flex w-48 h-full`}>
+        { buttonsLeft.map(({text, fn, className}) => (
+          <div key={ `${text}-btn` } className={ className } onClick={ fn }> { text } </div>
+        ))}
       </div>
       <div className="flex flex-wrap items-center px-1">
         { props.steps.map((step, idx) => {
@@ -61,8 +51,10 @@ const Channel = props => {
           );
         }) }
       </div>
-      <div className="flex ml-auto">
-        { buttons.map(({ text, fn })=> <div key={`btn-${text}`} className={`${theme}-button w-6`} onClick={fn}>{ text }</div>) }
+      <div className={ `flex ml-auto pl-2 ${theme}-l` }>
+        { buttonsRight.map(({ text, className, fn })=> (
+          <div key={ `btn-${text}` } className={ className } onClick={ fn }> { text } </div>
+        ))}
       </div>
     </div>
   );

@@ -2,14 +2,14 @@ import React from 'react';
 
 const Navbar = ({ theme }) => {
   return (
-    <nav className={`${theme} flex top-0 w-full items-center p-4 fixed`}>
+    <nav className={`${theme} flex top-0 w-full items-center p-4 fixed rounded-none`}>
       <div className="flex items-center w-full">
-        <span className="text-xl font-semibold px-2">
+        <span className="px-2 text-xl font-semibold">
           quince
         </span>
         <a href="https://github.com/Samboozle/quince"
           target="_blank" rel="noopener noreferrer"
-          className="ml-auto text-xl font-semibold px-2 hover:text-yellow-200"
+          className="px-2 ml-auto text-xl font-semibold hover:text-yellow-200"
         >
           Source
         </a>

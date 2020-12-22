@@ -31,7 +31,7 @@ const Transport = props => {
   const curriedTempo = offset => _ => handleChangeTempo(offset);
 
   const littleButton = (fn, text) => (
-      <button className={ `select-none text-center ml-1 ${props.theme}-button` } onClick={fn}>
+      <button className={ `ml-1 ${props.theme}-button` } onClick={fn}>
        { text }
       </button>
   );
