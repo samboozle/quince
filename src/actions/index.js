@@ -61,11 +61,20 @@ const selectDrumkit = name => {
 // thunkable
 const selectQuince = name => {
   return (dispatch, getState) => {
-    let { quinces } = getState();
-    let payload = quinces[name];
+    let { drumkits, quinces } = getState();
+    let quince = quinces[name];
+    let { defaultKit } = quince;
+    let drumkit = drumkits[defaultKit];
     dispatch({
       type: "SELECT_QUINCE",
-      payload
+      payload: quince
+    });
+    dispatch({
+      type: "SELECT_DRUMKIT",
+      payload: {
+        name: defaultKit,
+        drumkit
+      }
     });
   }
 }

@@ -6,14 +6,16 @@ const bootsAndCats = {
     { sample: "snare", steps: [ 0, 0, 0, 0, 1, 0, 0, 0 ] },
     { sample: "hat-closed", steps: [ 0, 0, 1, 0, 0, 0, 1, 0 ] }
   ],
-  subdivision: 4
+  subdivision: 4,
+  defaultKit: "Acoustic"
 }
 
 const emptyQuince = {
-  title: "New Quince",
+  title: "Empty Quince",
   tempo: 120,
   channels: [],
-  subdivision: 4
+  subdivision: 4,
+  defaultKit: "Acoustic"
 }
 
 const fifteenStep = {
@@ -25,13 +27,28 @@ const fifteenStep = {
     { sample: "hat-closed", steps: [ 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ] },
     { sample: "fx", steps: [ 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 ] },
   ],
-  subdivision: 4
+  subdivision: 4,
+  defaultKit: "Electro"
+}
+
+const waltz = {
+  title: "Papa Waltz",
+  tempo: 144,
+  channels: [
+    { sample: "kick", steps: [ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] },
+    { sample: "snare", steps: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,] },
+    { sample: "hat-closed", steps: [ 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1 ] },
+    { sample: "cymbal", steps: [ 1, 0, 0, 0, 0, 0, 0, 0, 0 ] },
+  ],
+  subdivision: 3,
+  defaultKit: "Vinyl"
 }
 
 export default [
   emptyQuince,
   bootsAndCats,
-  fifteenStep
+  fifteenStep,
+  waltz
 ]
 .reduce((acc, quince) => {
   acc[quince.title] = quince;
