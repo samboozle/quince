@@ -8,11 +8,8 @@ import {
   toggleStep
 } from '../actions';
 
-
 const Channel = props => {
-
   const theme = props.selectedDrumkit.name;
-
   const playDrums = _ => props.selectedDrumkit.drumkit.play(props.sample);
   const activeStep = props.currentTick % props.steps.length;
   const buttonsLeft  = [

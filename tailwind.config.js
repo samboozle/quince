@@ -10,11 +10,12 @@ module.exports = {
     // },
     colors: {
       amber: colors.amber,
+      black: colors.black,
+      gray: colors.coolGray,
+      green: colors.lime,
+      grey: colors.warmGray,
       red: colors.red,
       rose: colors.rose,
-      gray: colors.coolGray,
-      grey: colors.warmGray,
-      green: colors.lime,
       white: colors.white,
       yellow: colors.yellow,
     },
@@ -27,6 +28,7 @@ module.exports = {
     extend: {
       backgroundColor: ['active'],
       boxShadow: ['active'],
+      textColor: ['active']
     },
   },
   plugins: [],
