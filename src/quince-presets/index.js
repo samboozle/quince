@@ -5,13 +5,15 @@ const bootsAndCats = {
     { sample: "kick", steps: [ 1, 0, 0, 0, 0, 0, 0, 0 ] },
     { sample: "snare", steps: [ 0, 0, 0, 0, 1, 0, 0, 0 ] },
     { sample: "hat-closed", steps: [ 0, 0, 1, 0, 0, 0, 1, 0 ] }
-  ]
+  ],
+  subdivision: 4
 }
 
 const emptyQuince = {
   title: "New Quince",
   tempo: 120,
-  channels: []
+  channels: [],
+  subdivision: 4
 }
 
 const fifteenStep = {
@@ -22,7 +24,8 @@ const fifteenStep = {
     { sample: "snare", steps: [ 0, 0, 0, 1, 0, 1, 0, 0, 1, 0 ] },
     { sample: "hat-closed", steps: [ 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ] },
     { sample: "fx", steps: [ 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 ] },
-  ]
+  ],
+  subdivision: 4
 }
 
 export default [

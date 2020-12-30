@@ -7,9 +7,14 @@ const addStepToChannel = channelIndex => {
   }
 }
 
-const changeTempo = adjustment => ({
-    type: "CHANGE_TEMPO",
-    payload: adjustment
+const changeSubdivision = offset => ({
+  type: "CHANGE_SUBDIVISION",
+  payload: offset
+});
+
+const changeTempo = offset => ({
+  type: "CHANGE_TEMPO",
+  payload: offset
 });
 
 // thunkable -- references global state :/
@@ -84,6 +89,7 @@ const toggleStep = (channelIndex, stepIndex) => {
 export {
   addChannel,
   addStepToChannel,
+  changeSubdivision,
   changeTempo,
   cycleChannelSamples,
   removeChannel,

@@ -16,6 +16,11 @@ export default (selectedQuince = quinces["Fifteen Step"], { type, payload }) => 
             : [...acc, channel];
         }, [])
       }
+    case "CHANGE_SUBDIVISION":
+      return {
+        ...selectedQuince,
+        subdivision: Math.max(selectedQuince.subdivision + payload, 1)
+      }
     case "CHANGE_TEMPO":
       return {
         ...selectedQuince,

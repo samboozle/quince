@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
+  changeSubdivision,
   changeTempo,
   selectDrumkit,
   selectQuince,
@@ -31,43 +32,53 @@ const Transport = props => {
   const curriedTempo = offset => _ => handleChangeTempo(offset);
 
   const littleButton = (fn, text) => (
-      <button className={ `ml-1 ${props.theme}-button` } onClick={fn}>
+      <button className={ `ml-1 ${ props.theme }-button` } onClick={fn}>
        { text }
       </button>
   );
 
-  const buttonGroups = [
+  const subdivisionButtonGroup = [
+    { fn: _ => props.changeSubdivision( 1), text: "+" },
+    { fn: _ => props.changeSubdivision(-1), text: "-" }
+  ];
+
+  const tempoButtonGroups = [
     [{ fn: curriedTempo(1),  text: "+1" }, { fn: curriedTempo(10),  text: "+10" }],
     [{ fn: curriedTempo(-1), text: "-1" }, { fn: curriedTempo(-10), text: "-10" }]
   ];
 
   return (
     <div className={ props.theme }>
-      <div className="flex flex-row w-full p-2 my-2">
+      <div className="flex flex-wrap w-full p-2 my-2">
         <button
-          className={ `mr-1 focus:outline-none w-16 text-xl ${props.theme}-button${(props.playing ? "-red" : "")}` }
+          className={ `mr-1 focus:outline-none w-16 text-xl ${props.theme}-button${(props.playing ? "-invert" : "")}` }
           onClick={ props.togglePlaying }
         >
           { props.playing ? "||" : "|>" }
         </button>
-        <div className={ `mr-1 ${props.theme}-bubble flex` }>
+        <div className={ `mr-1 ${ props.theme }-bubble flex` }>
           <div 
-            className="flex mx-1 align-center"
+            className="flex items-center mx-1"
           >
             { props.selectedQuince.tempo }bpm
           </div>
           <div class="flex flex-col">
-            { buttonGroups.map((group, idx) => (
-                <div className={ `flex justify-between ${idx ? "mt-1" : ""}` }>
+            { tempoButtonGroups.map((group, idx) => (
+                <div className={ `flex ${idx ? "mt-1" : ""}` }>
                   { group.map(({ fn, text }) => littleButton(fn, text)) }
                 </div>
               ))
             }
           </div>
         </div>
-        {/* <div className="p-3 mx-1 bg-white rounded active:shadow-inner">
-          Tick: { props.currentTick }
-        </div> */}
+        <div className={`mr-1 ${props.theme}-bubble flex`}>
+          <div className="flex items-center mx-1">
+            { props.selectedQuince.subdivision } ticks/beat
+          </div>
+          <div className="flex flex-col justify-between h-full">
+            { subdivisionButtonGroup.map(({ fn, text }, idx) => littleButton(fn, text)) }
+          </div>
+        </div>
         <DropdownMenu
           title={ "Drumkit" }
           items={ Object.keys(props.drumkits) }
@@ -104,6 +115,7 @@ const mapStateToProps = state => ({
 });
 
 const actions = {
+  changeSubdivision,
   changeTempo,
   selectDrumkit,
   selectQuince,
