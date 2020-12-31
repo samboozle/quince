@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+
+/*
+  This is where classes with @apply directives will go.
+*/
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url(./assets/fonts/JetBrainsMono-Regular.woff) format('woff');
+}
+
+body {
+  @apply font-mono
+}
+
+.bubble {
+  @apply p-1 flex items-center justify-center
+}
+
+.btn {
+  @apply focus:outline-none flex items-center justify-center px-1 select-none
+}
+
+.beat {
+  @apply h-8 w-8 hover:opacity-75 mx-1 mb-1
+}
+
+.dropdown {
+  @apply absolute right-0 top-0 mt-12 overflow-hidden
+}
+
+.dropdown-item {
+  @apply select-none p-2
+}
+
+/*
+  Theme for Acoustic drumkit
+*/
+
+.Acoustic {
+  @apply bg-yellow-700 text-red-200 lg:rounded-lg shadow-lg
+}
+
+.Acoustic-item {
+  @apply dropdown-item hover:bg-red-200 hover:text-yellow-700
+}
+
+.Acoustic-dropdown {
+  @apply dropdown Acoustic border border-red-400
+}
+
+.Acoustic-page {
+  @apply bg-grey-200
+}
+
+.Acoustic-active {
+  @apply beat bg-yellow-300 rounded-lg shadow-none
+}
+
+.Acoustic-on {
+  @apply beat bg-red-400 rounded-lg shadow-lg
+}
+
+.Acoustic-off {
+  @apply beat bg-grey-200 rounded-lg shadow-lg
+}
+
+.Acoustic-b {
+  @apply border-b border-red-400
+}
+
+.Acoustic-r {
+  @apply border-r border-red-400
+}
+
+.Acoustic-l {
+  @apply border-l border-red-400
+}
+
+.Acoustic-t {
+  @apply border-t border-red-400
+}
+
+.Acoustic-bubble {
+  @apply bubble bg-yellow-700 ring-2 ring-inset ring-red-200 text-red-200 shadow-lg rounded-lg
+}
+
+.Acoustic-button {
+  @apply btn bg-red-200 text-yellow-700 rounded-lg shadow-lg hover:bg-red-400 active:bg-yellow-200 active:shadow-none
+}
+
+.Acoustic-hover {
+  @apply hover:text-red-400
+}
+
+.Acoustic-button-invert {
+  @apply btn Acoustic-bubble hover:bg-red-400 active:bg-yellow-200 hover:text-yellow-700
+}
+
+/* 
+  Theme for Electro drumkit
+*/
+
+.Electro {
+  @apply bg-gray-600 text-green-400
+}
+
+.Electro-item {
+  @apply dropdown-item hover:bg-green-400 hover:text-gray-600
+}
+
+.Electro-dropdown {
+  @apply dropdown Electro border border-green-400
+}
+
+.Electro-page {
+  @apply bg-gray-300
+}
+
+.Electro-active {
+  @apply beat bg-red-400
+}
+
+.Electro-on {
+  @apply beat bg-green-400
+}
+
+.Electro-off {
+  @apply beat bg-gray-400
+}
+
+.Electro-b {
+  @apply border-b border-green-400
+}
+
+.Electro-r {
+  @apply border-r border-green-400
+}
+
+.Electro-l {
+  @apply border-l border-green-400
+}
+
+.Electro-t {
+  @apply border-t border-green-400
+}
+
+.Electro-bubble {
+  @apply bubble text-green-400 border-t border-b border-green-400
+}
+
+.Electro-hover {
+  @apply hover:text-red-400
+}
+
+.Electro-button {
+  @apply btn bg-green-400 text-gray-600 hover:bg-green-600 active:bg-red-600
+}
+
+.Electro-button-invert {
+  @apply btn bg-red-400 text-gray-600 hover:bg-red-600 active:bg-green-600
+}
+
+/*
+  Theme for Vinyl drumkit
+*/
+
+.Vinyl {
+  @apply bg-white
+}
+
+.Vinyl-item {
+  @apply dropdown-item hover:text-white hover:bg-black
+}
+
+.Vinyl-dropdown {
+  @apply dropdown Vinyl border border-black
+}
+
+.Vinyl-page {
+  @apply bg-white
+}
+
+.Vinyl-active {
+  @apply beat rounded-full bg-black
+}
+
+.Vinyl-off {
+  @apply beat rounded-full ring-2 ring-inset ring-black
+}
+
+.Vinyl-on {
+  @apply Vinyl-off bg-gray-400
+}
+
+.Vinyl-b {
+  @apply border-b border-black
+}
+
+.Vinyl-r {
+  @apply border-r border-black
+}
+
+.Vinyl-l {
+  @apply border-l border-black
+}
+
+.Vinyl-t {
+  @apply border-t border-black
+}
+
+.Vinyl-bubble {
+  @apply bubble border-t border-b border-black
+}
+
+.Vinyl-hover {
+  @apply hover:text-red-400
+}
+
+.Vinyl-button {
+  @apply btn ring-2 ring-inset ring-black hover:bg-gray-400 active:bg-black active:text-white rounded-full
+}
+
+.Vinyl-button-invert {
+  @apply btn ring-2 ring-inset ring-black text-white bg-black hover:bg-gray-700 active:bg-white active:text-black rounded-full
+}
+
+@tailwind utilities;

@@ -1,6 +1,6 @@
 import quinces from '../quince-presets';
 
-export default (selectedQuince = quinces["New Quince"], { type, payload }) => {
+export default (selectedQuince = quinces["Fifteen Step"], { type, payload }) => {
   switch (type) {
     case "ADD_CHANNEL":
       return {
@@ -15,6 +15,11 @@ export default (selectedQuince = quinces["New Quince"], { type, payload }) => {
             ? [...acc, { ...channel, steps: [...channel.steps, 0] }]
             : [...acc, channel];
         }, [])
+      }
+    case "CHANGE_SUBDIVISION":
+      return {
+        ...selectedQuince,
+        subdivision: Math.max(selectedQuince.subdivision + payload, 1)
       }
     case "CHANGE_TEMPO":
       return {

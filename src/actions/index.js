@@ -7,12 +7,15 @@ const addStepToChannel = channelIndex => {
   }
 }
 
-const changeTempo = adjustment => {
-  return {
-    type: "CHANGE_TEMPO",
-    payload: adjustment
-  }
-}
+const changeSubdivision = offset => ({
+  type: "CHANGE_SUBDIVISION",
+  payload: offset
+});
+
+const changeTempo = offset => ({
+  type: "CHANGE_TEMPO",
+  payload: offset
+});
 
 // thunkable -- references global state :/
 const cycleChannelSamples = (channelIndex, currentSample) => {
@@ -48,7 +51,7 @@ const selectDrumkit = name => {
   return (dispatch, getState) => {
     let { drumkits } = getState();
     let drumkit = drumkits[name];
-    return dispatch({
+    dispatch({
       type: "SELECT_DRUMKIT",
       payload: { name, drumkit }
     });
@@ -58,11 +61,20 @@ const selectDrumkit = name => {
 // thunkable
 const selectQuince = name => {
   return (dispatch, getState) => {
-    let { quinces } = getState();
-    let payload = quinces[name];
-    return dispatch({
+    let { drumkits, quinces } = getState();
+    let quince = quinces[name];
+    let { defaultKit } = quince;
+    let drumkit = drumkits[defaultKit];
+    dispatch({
       type: "SELECT_QUINCE",
-      payload
+      payload: quince
+    });
+    dispatch({
+      type: "SELECT_DRUMKIT",
+      payload: {
+        name: defaultKit,
+        drumkit
+      }
     });
   }
 }
@@ -86,6 +98,7 @@ const toggleStep = (channelIndex, stepIndex) => {
 export {
   addChannel,
   addStepToChannel,
+  changeSubdivision,
   changeTempo,
   cycleChannelSamples,
   removeChannel,
