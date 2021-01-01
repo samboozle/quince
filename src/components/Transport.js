@@ -14,6 +14,7 @@ import DropdownMenu from './DropdownMenu';
 const Transport = props => {
 
   const [queuedTempoChange, setQueuedTempoChange] = useState(0);
+  const [controls, setControls] = useState(true);
 
   useEffect(_ => {
     if (queuedTempoChange) {
@@ -48,57 +49,59 @@ const Transport = props => {
   ];
 
   return (
-    <div className={ props.theme }>
-      <div className="flex flex-wrap w-full p-2 my-2">
-        <button
-          className={ `mr-1 focus:outline-none w-16 text-xl ${props.theme}-button${(props.playing ? "-invert" : "")}` }
-          onClick={ props.togglePlaying }
+    <div className={ `${props.theme} flex flex-wrap justify-center lg:justify-start w-full lg:w-full p-2 lg:my-2` }>
+      <button
+        className={ `mb-1 sm:mr-1 sm:mb-0 focus:outline-none h-16 w-4/5 lg:w-16 lg:h-auto text-xl ${props.theme}-button${(props.playing ? "-invert" : "")}` }
+        onClick={ props.togglePlaying }
+      >
+        { props.playing ? "||" : "|>" }
+      </button>
+      <div className={ `mr-1 ${ props.theme }-bubble ${ controls ? "flex" : "hidden lg:flex" }` }>
+        <div 
+          className="flex items-center mx-1"
         >
-          { props.playing ? "||" : "|>" }
-        </button>
-        <div className={ `mr-1 ${ props.theme }-bubble flex` }>
-          <div 
-            className="flex items-center mx-1"
-          >
-            { props.selectedQuince.tempo }bpm
-          </div>
-          <div class="flex flex-col">
-            { tempoButtonGroups.map((group, idx) => (
-                <div className={ `flex ${idx ? "mt-1" : ""}` }>
-                  { group.map(({ fn, text }) => littleButton(fn, text)) }
-                </div>
-              ))
-            }
-          </div>
+          { props.selectedQuince.tempo }bpm
         </div>
-        <div className={`mr-1 ${props.theme}-bubble flex`}>
-          <div className="flex items-center mx-1">
-            { props.selectedQuince.subdivision } ticks/beat
-          </div>
-          <div className="flex flex-col justify-between h-full">
-            { subdivisionButtonGroup.map(({ fn, text }, idx) => littleButton(fn, text)) }
-          </div>
+        <div class="flex flex-col">
+          { tempoButtonGroups.map((group, idx) => (
+              <div className={ `flex ${idx ? "mt-1" : ""}` }>
+                { group.map(({ fn, text }) => littleButton(fn, text)) }
+              </div>
+            ))}
         </div>
-        <DropdownMenu
-          title={ "Drumkit" }
-          items={ Object.keys(props.drumkits) }
-          selected={ props.theme }
-          selector={ props.selectDrumkit }
-          theme={ props.theme }
-        />
-        <DropdownMenu
-          title={ "Quince" }
-          items={ Object.keys(props.quinces) }
-          selected={ props.selectedQuince.title }
-          selector={ props.selectQuince }
-          theme={ props.theme }
-        />
-        <div
-          className={`${props.theme}-button ml-auto w-16`}
-          onClick={ props.toggleHelp }
-        >
-          Help!
+      </div>
+      <div className={ `mr-1 ${ props.theme }-bubble ${ controls ? "flex" : "hidden lg:flex" }` }>
+        <div className="flex items-center mx-1">
+          { props.selectedQuince.subdivision } ticks/beat
         </div>
+        <div className="flex flex-col justify-between h-full">
+          { subdivisionButtonGroup.map(({ fn, text }) => littleButton(fn, text)) }
+        </div>
+      </div>
+      <DropdownMenu
+        title={ "Drumkit" }
+        items={ Object.keys(props.drumkits) }
+        selected={ props.theme }
+        selector={ props.selectDrumkit }
+        theme={ props.theme }
+        css={ controls ? "flex" : "hidden lg:flex" }
+      />
+      <DropdownMenu
+        title={ "Quince" }
+        items={ Object.keys(props.quinces) }
+        selected={ props.selectedQuince.title }
+        selector={ props.selectQuince }
+        theme={ props.theme }
+        css={ controls ? "flex" : "hidden lg:flex" }
+      />
+      <div className={ `${ props.theme }-button w-2/5 lg:hidden h-12 my-1 mr-1` } onClick={_ => setControls(!controls) }>
+        { controls ? "Hide" : "Show" } Controls
+      </div>
+      <div
+        className={ `${ props.theme }-button w-2/5 h-12 md:h-auto my-1 lg:my-0 mr-1 lg:mr-0 lg:ml-auto lg:w-16` }
+        onClick={ props.toggleHelp }
+      >
+        Help!
       </div>
     </div>
   );
