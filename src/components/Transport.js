@@ -62,7 +62,7 @@ const Transport = props => {
         >
           { props.selectedQuince.tempo }bpm
         </div>
-        <div class="flex flex-col">
+        <div className="flex flex-col">
           { tempoButtonGroups.map((group, idx) => (
               <div className={ `flex ${idx ? "mt-1" : ""}` }>
                 { group.map(({ fn, text }) => littleButton(fn, text)) }
@@ -80,7 +80,7 @@ const Transport = props => {
       </div>
       <DropdownMenu
         title={ "Drumkit" }
-        items={ Object.keys(props.drumkits) }
+        items={ props.drumkits }
         selected={ props.theme }
         selector={ props.selectDrumkit }
         theme={ props.theme }
@@ -113,7 +113,7 @@ const mapStateToProps = state => ({
   playing: state.playing,
   quinces: state.quinces,
   samples: state.samples,
-  theme: state.selectedDrumkit.name,
+  theme: state.selectedDrumkit,
   selectedQuince: state.selectedQuince
 });
 

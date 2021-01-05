@@ -1,11 +1,9 @@
 const addChannel = _ => ({ type: "ADD_CHANNEL" });
 
-const addStepToChannel = channelIndex => {
-  return {
-    type: "ADD_STEP_TO_CHANNEL",
-    payload: channelIndex
-  }
-}
+const addStepToChannel = channelIndex => ({
+  type: "ADD_STEP_TO_CHANNEL",
+  payload: channelIndex
+});
 
 const changeSubdivision = offset => ({
   type: "CHANGE_SUBDIVISION",
@@ -46,35 +44,24 @@ const removeStepFromChannel = channelIndex => {
   }
 }
 
-// thunkable
-const selectDrumkit = name => {
-  return (dispatch, getState) => {
-    let { drumkits } = getState();
-    let drumkit = drumkits[name];
-    dispatch({
-      type: "SELECT_DRUMKIT",
-      payload: { name, drumkit }
-    });
-  }
-}
+const selectDrumkit = name => ({
+  type: "SELECT_DRUMKIT",
+  payload: name
+});
 
 // thunkable
 const selectQuince = name => {
   return (dispatch, getState) => {
-    let { drumkits, quinces } = getState();
+    let { quinces } = getState();
     let quince = quinces[name];
     let { defaultKit } = quince;
-    let drumkit = drumkits[defaultKit];
     dispatch({
       type: "SELECT_QUINCE",
       payload: quince
     });
     dispatch({
       type: "SELECT_DRUMKIT",
-      payload: {
-        name: defaultKit,
-        drumkit
-      }
+      payload: defaultKit
     });
   }
 }
@@ -85,11 +72,11 @@ const toggleHelp = _ => ({ type: "TOGGLE_HELP" });
 
 const togglePlaying = _ => ({ type: "TOGGLE_PLAYING" });
 
-const toggleStep = (channelIndex, stepIndex) => {
+const toggleStep = (sample, stepIndex) => {
   return {
     type: "TOGGLE_STEP",
     payload: {
-      channelIndex,
+      sample,
       stepIndex
     }
   }

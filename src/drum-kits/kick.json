@@ -1,0 +1,18 @@
+{
+  "name": "kick",
+  "sample": "/audio-sprites/kick.mp3",
+  "spritemap": {
+    "Acoustic": {
+      "start": 0,
+      "end": 0.5937868480725623
+    },
+    "Electro": {
+      "start": 2,
+      "end": 2.5212018140589567
+    },
+    "Vinyl": {
+      "start": 4,
+      "end": 4.820181405895692
+    }
+  }
+}

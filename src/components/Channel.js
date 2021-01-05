@@ -9,17 +9,16 @@ import {
 } from '../actions';
 
 const Channel = props => {
-  const theme = props.selectedDrumkit.name;
-  const playDrums = _ => props.selectedDrumkit.drumkit.play(props.sample);
+  const { drum } = props;
+  const theme = props.selectedDrumkit;
+  const playDrums = _ => {
+    drum.stop();
+    drum.play(theme);
+  }
   const activeStep = props.currentTick % props.steps.length;
-  const buttonsLeft  = [
-    { text: props.sample, className: `${theme}-button h-8 w-28`,     fn: _ => props.cycleChannelSamples(props.chIdx, props.sample) },
-    { text: "!",          className: `${theme}-button h-8 w-8 ml-2`, fn: playDrums },
-    { text: "X",          className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeChannel(props.chIdx) },
-  ];
   const buttonsRight = [
-    { text: "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(props.chIdx) },
-    { text: "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(props.chIdx) },
+    { text: "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(props.sample) },
+    { text: "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(props.sample) },
   ];
 
   useEffect(_ => {
@@ -30,11 +29,15 @@ const Channel = props => {
   });
 
   return (
-    <div className={ `${theme}-b flex w-full items-start pt-1` }>
-      <div className={`${theme}-r pr-2 mb-1 flex w-48 h-full`}>
-        { buttonsLeft.map(({text, fn, className}) => (
-          <div key={ `${text}-btn` } className={ className } onClick={ fn }> { text } </div>
-        ))}
+    <div className={ `${ theme }-b flex w-full items-start pt-1` }>
+      <div className={ `${ theme }-r pr-2 mb-1 flex w-40 h-full` }>
+        <div className="flex items-center justify-center w-28"> { props.sample } </div>
+        <button
+          className={ `${ theme }-button${ drum._muted ? "-invert" : "" } h-8 w-8 ml-auto` }
+          onClick={ _ => drum._muted ? drum.mute(false) : drum.mute(true) }
+        >
+          { drum._muted ? "." : "!" }
+        </button>
       </div>
       <div className="flex flex-wrap items-center px-1">
         { props.steps.map((step, idx) => {
@@ -42,8 +45,8 @@ const Channel = props => {
           return (
             <div
               className={ `${theme}-${active ? "active" : step ? "on" : "off" }` }
-              key={ "ch-" + props.chIdx + "st-" + idx }
-              onClick={ _ => props.toggleStep(props.chIdx, idx) }
+              key={ props.sample + "-st-" + idx }
+              onClick={ _ => props.toggleStep(props.sample, idx) }
             />
           );
         }) }

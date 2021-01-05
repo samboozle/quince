@@ -1,0 +1,18 @@
+{
+  "name": "tom-lo",
+  "sample": "/audio-sprites/tom-lo.mp3",
+  "spritemap": {
+    "Acoustic": {
+      "start": 0,
+      "end": 1.362108843537415
+    },
+    "Electro": {
+      "start": 3,
+      "end": 3.665532879818594
+    },
+    "Vinyl": {
+      "start": 5,
+      "end": 7.738344671201814
+    }
+  }
+}

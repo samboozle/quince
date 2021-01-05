@@ -1,0 +1,18 @@
+{
+  "name": "hat-closed",
+  "sample": "/audio-sprites/hat-cl.mp3",
+  "spritemap": {
+    "Acoustic": {
+      "start": 0,
+      "end": 0.7251700680272108
+    },
+    "Electro": {
+      "start": 2,
+      "end": 2.366031746031746
+    },
+    "Vinyl": {
+      "start": 4,
+      "end": 4.7148979591836735
+    }
+  }
+}
