@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default props => {
-  const { title, selected, items, selector, theme } = props;
+  const { title, selected, items, selector, theme, css } = props;
   const [toggled, setToggled] = useState(false);
 
   const toggle = _ => setToggled(!toggled);
@@ -27,7 +27,7 @@ export default props => {
 
   return (
     <div
-      className={ `relative flex flex-row justify-center ${ props.theme }-bubble mr-1` }
+      className={ `relative ${ css } flex-row justify-center ${ props.theme }-bubble mr-1` }
       onMouseEnter={ toggle }
       onMouseLeave={ toggle }
     >

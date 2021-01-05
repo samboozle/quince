@@ -39,9 +39,9 @@ const App = props => {
   );
 
   return (
-    <div className={`${props.theme}-page h-screen`}>
-      <Navbar theme={props.theme} />
-      <div className="container h-auto pt-16 mx-auto">
+    <div className={`${ props.theme }-page h-screen`}>
+      <Navbar theme={ props.theme } />
+      <div className="w-full h-auto mx-0 lg:container lg:mx-auto lg:pt-16">
         <Transport />
         { props.help && helpMessage }
         <Sequence />

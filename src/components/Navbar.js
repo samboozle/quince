@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = ({ theme }) => {
   return (
-    <nav className={`${theme} flex top-0 w-full items-center p-4 fixed rounded-none`}>
+    <nav className={`${theme} flex top-0 w-full items-center p-4 lg:fixed rounded-none`}>
       <div className="flex items-center w-full">
         <span className="px-2 text-xl font-semibold">
           quince

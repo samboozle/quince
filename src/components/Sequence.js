@@ -20,12 +20,12 @@ const Sequence = props => {
           key={ key }
           steps={ steps }
         />
-      )
+      );
     });
   }
 
   return (
-    <div className={ `${props.theme} py-2 px-2 mb-` }>
+    <div className={ `${props.theme} py-2 px-2` }>
       <div
         onClick={ props.addChannel }
         className={ `${props.theme}-button w-40 h-12 mb-1` }

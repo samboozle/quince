@@ -15,7 +15,7 @@ body {
 }
 
 .bubble {
-  @apply p-1 flex items-center justify-center
+  @apply p-1 flex items-center justify-center my-1 lg:my-0 w-2/5 lg:w-auto
 }
 
 .btn {
@@ -34,12 +34,16 @@ body {
   @apply select-none p-2
 }
 
+.hide {
+  @apply hidden lg:flex
+}
+
 /*
   Theme for Acoustic drumkit
 */
 
 .Acoustic {
-  @apply bg-yellow-700 text-red-200 lg:rounded-lg shadow-lg
+  @apply bg-yellow-700 text-red-200 lg:rounded-lg lg:shadow-lg
 }
 
 .Acoustic-item {
