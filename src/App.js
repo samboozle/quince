@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
   help: state.help,
   playing: state.playing,
   selectedQuince: state.selectedQuince,
-  theme: state.selectedDrumkit.name,
+  theme: state.selectedDrumkit,
 });
 
 const actions = {

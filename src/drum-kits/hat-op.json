@@ -1,0 +1,18 @@
+{
+  "name": "hat-open",
+  "sample": "/audio-sprites/hat-op.mp3",
+  "spritemap": {
+    "Acoustic": {
+      "start": 0,
+      "end": 1.9447619047619047
+    },
+    "Electro": {
+      "start": 3,
+      "end": 3.922063492063492
+    },
+    "Vinyl": {
+      "start": 5,
+      "end": 7.190476190476191
+    }
+  }
+}

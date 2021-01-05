@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import selectedDrumkit from './selectedDrumkitReducer';
 import selectedQuince from './selectedQuinceReducer';
 
-import drumkits from '../drum-kits';
+import drums from '../drum-kits';
 import quinces from '../quince-presets';
 
 const tick = (prev = 0, { type }) => {
@@ -37,7 +37,8 @@ const togglePlaying = (playing = false, { type }) => {
 
 export default combineReducers({
   currentTick: tick,
-  drumkits: _ => drumkits,
+  drums: _ => drums,
+  drumkits: _ => ["Acoustic", "Electro", "Vinyl"],
   help: toggleHelp,
   playing: togglePlaying,
   quinces: _ => quinces,
