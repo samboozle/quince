@@ -10,6 +10,14 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
           [ payload ]: [...selectedQuince.channels[ payload ], 0]
         }
       }
+    case "ADD_BEAT_TO_CHANNEL":
+      return {
+        ...selectedQuince,
+        channels: {
+          ...selectedQuince.channels,
+          [ payload.sample ]: selectedQuince.channels[ payload.sample ].concat(Array.from({ length: payload.subdivision }, _ => 0))
+        }
+      }
     case "CHANGE_SUBDIVISION":
       return {
         ...selectedQuince,
@@ -29,6 +37,14 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
     //         : [...acc, channel]
     //     }, [])]
     //   }
+    case "REMOVE_BEAT_FROM_CHANNEL":
+      return {
+        ...selectedQuince,
+        channels: {
+          ...selectedQuince.channels,
+          [ payload.sample ]: selectedQuince.channels[ payload.sample ].slice(0, selectedQuince.channels[ payload.sample ].length - payload.subdivision)
+        }
+      }
     case "REMOVE_STEP_FROM_CHANNEL":
       return {
         ...selectedQuince,
