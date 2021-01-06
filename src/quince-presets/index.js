@@ -34,6 +34,24 @@ const fifteenStep = {
   defaultKit: "Electro"
 }
 
+const hemophilia = {
+  title: "Hemophilia",
+  tempo: 66,
+  channels: {
+    "kick":       [ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1 ],
+    "snare":      [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+    "snare-alt":  [],
+    "hat-open":   [],
+    "hat-closed": [ 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ],
+    "tom-hi":     [],
+    "tom-lo":     [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    "crash":      [ 1, 0, 0, 0, 0, 0, 0, 0 ],
+    "misc":       [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 ],
+  },
+  subdivision: 8,
+  defaultKit: "Vinyl"
+}
+
 const waltz = {
   title: "Papa Waltz",
   tempo: 144,
@@ -55,6 +73,7 @@ const waltz = {
 export default [
   emptyQuince,
   fifteenStep,
+  hemophilia,
   waltz
 ]
 .reduce((acc, quince) => {

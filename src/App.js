@@ -12,7 +12,7 @@ import {
 const App = props => {
 
   usePlayback(
-    _ => props.tick(),
+    props.tick,
     props.playing
       ? (60000
           / props.selectedQuince.tempo
