@@ -1,4 +1,3 @@
-import { accessSync } from 'fs';
 import quinces from '../quince-presets';
 
 export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => {
