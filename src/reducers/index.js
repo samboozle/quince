@@ -6,6 +6,15 @@ import selectedQuince from './selectedQuinceReducer';
 import drums from '../drum-kits';
 import quinces from '../quince-presets';
 
+const intersperse = (bool = true, { type }) => {
+  switch (type) {
+    case "INTERSPERSE_ON_SUBDIVISION_CHANGE":
+      return !bool;
+    default:
+      return bool;
+  }
+}
+
 const tick = (prev = 0, { type }) => {
   switch (type) {
     case "TICK":
@@ -40,6 +49,7 @@ export default combineReducers({
   drums: _ => drums,
   drumkits: _ => ["Acoustic", "Electro", "Vinyl"],
   help: toggleHelp,
+  intersperse,
   playing: togglePlaying,
   quinces: _ => quinces,
   samples: _ => ["kick", "snare", "snare-alt", "hat-open", "hat-closed", "tom-hi", "tom-lo", "crash", "misc"],

@@ -1,6 +1,10 @@
+import { accessSync } from 'fs';
 import quinces from '../quince-presets';
 
 export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => {
+
+  const { subdivision } = selectedQuince;
+
   switch (type) {
     case "ADD_STEP_TO_CHANNEL":
       return {
@@ -21,7 +25,10 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
     case "CHANGE_SUBDIVISION":
       return {
         ...selectedQuince,
-        subdivision: Math.max(selectedQuince.subdivision + payload, 1)
+        subdivision: Math.max(subdivision + payload.offset, 1),
+        channels: payload.intersperse
+          ? intersperseSubdivisions(selectedQuince.channels, subdivision, payload.offset)
+          : { ...selectedQuince.channels }
       }
     case "CHANGE_TEMPO":
       return {
@@ -74,4 +81,23 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
     default:
       return selectedQuince;
   }
+}
+
+const intersperseSubdivisions = (obj, subdivision, offset) => {
+  const intersperser = (arr, prev, off) => {
+    return arr.reduce(
+      (acc, ele, idx) =>
+        !((idx + 1) % prev)
+          ? offset === 1
+            ? [ ...acc, ele, 0 ]
+            : [ ...acc ]
+          : [ ...acc, ele ],
+      []
+    );
+  }
+
+  return Object.entries(obj).reduce((acc, [ key, val ]) => {
+    acc[key] = intersperser(val, subdivision, offset);
+    return acc;
+  }, {})
 }

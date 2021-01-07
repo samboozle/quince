@@ -14,10 +14,16 @@ const addStepToChannel = sample => ({
   payload: sample
 });
 
-const changeSubdivision = offset => ({
-  type: "CHANGE_SUBDIVISION",
-  payload: offset
-});
+const changeSubdivision = offset => (dispatch, getState) => {
+  let { intersperse } = getState();
+  dispatch({
+    type: "CHANGE_SUBDIVISION",
+    payload: {
+      intersperse,
+      offset
+    }
+  });
+};
 
 const changeTempo = offset => ({
   type: "CHANGE_TEMPO",
