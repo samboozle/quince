@@ -11,7 +11,6 @@ import {
 } from '../actions';
 
 const Channel = props => {
-  // console.log("rerendering...")
   const { drum } = props;
   const theme = props.selectedDrumkit;
   const playDrums = _ => {
@@ -83,7 +82,6 @@ const actions = {
   addBeatToChannel,
   addStepToChannel,
   // cycleChannelSamples,
-  // removeChannel,
   removeBeatFromChannel,
   removeStepFromChannel,
   toggleStep

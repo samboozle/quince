@@ -26,7 +26,7 @@ const Sequence = props => {
       <Channel
         sample={ sample }
         drum={ props.drums[sample] }
-        key={ `${sample}-channel` }
+        key={ `${ sample }-channel` }
         steps={ steps }
         small={ small }
       />

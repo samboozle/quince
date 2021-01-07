@@ -42,7 +42,7 @@ export default combineReducers({
   help: toggleHelp,
   playing: togglePlaying,
   quinces: _ => quinces,
-  samples: _ => ["kick", "snare", "hat-open", "hat-closed", "cymbal", "fx"],
+  samples: _ => ["kick", "snare", "snare-alt", "hat-open", "hat-closed", "tom-hi", "tom-lo", "crash", "misc"],
   selectedDrumkit,
   selectedQuince,
 });
