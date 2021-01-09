@@ -1,6 +1,6 @@
 {
   "name": "tom-lo",
-  "sample": "/audio-sprites/tom-lo.mp3",
+  "sample": "/audio-sprites/tom-lo",
   "spritemap": {
     "Acoustic": {
       "start": 0,

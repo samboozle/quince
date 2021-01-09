@@ -33,7 +33,7 @@ const Transport = props => {
   const curriedTempo = offset => _ => handleChangeTempo(offset);
 
   const littleButton = (fn, text) => (
-      <button className={ `ml-1 ${ props.theme }-button` } onClick={fn}>
+      <button key={ text + "-button" } className={ `ml-1 ${ props.theme }-button` } onClick={fn}>
        { text }
       </button>
   );
@@ -64,7 +64,7 @@ const Transport = props => {
         </div>
         <div className="flex flex-col">
           { tempoButtonGroups.map((group, idx) => (
-              <div className={ `flex ${idx ? "mt-1" : ""}` }>
+              <div key={ "btngroup-" + idx } className={ `flex ${idx ? "mt-1" : ""}` }>
                 { group.map(({ fn, text }) => littleButton(fn, text)) }
               </div>
             ))}

@@ -1,6 +1,6 @@
 {
   "name": "hat-open",
-  "sample": "/audio-sprites/hat-op.mp3",
+  "sample": "/audio-sprites/hat-op",
   "spritemap": {
     "Acoustic": {
       "start": 0,

@@ -4,7 +4,17 @@ import selectedDrumkit from './selectedDrumkitReducer';
 import selectedQuince from './selectedQuinceReducer';
 
 import drums from '../drum-kits';
+import strings from '../guitar-strings';
 import quinces from '../quince-presets';
+
+const intersperse = (bool = true, { type }) => {
+  switch (type) {
+    case "INTERSPERSE_ON_SUBDIVISION_CHANGE":
+      return !bool;
+    default:
+      return bool;
+  }
+}
 
 const tick = (prev = 0, { type }) => {
   switch (type) {
@@ -40,9 +50,11 @@ export default combineReducers({
   drums: _ => drums,
   drumkits: _ => ["Acoustic", "Electro", "Vinyl"],
   help: toggleHelp,
+  intersperse,
   playing: togglePlaying,
   quinces: _ => quinces,
-  samples: _ => ["kick", "snare", "hat-open", "hat-closed", "cymbal", "fx"],
+  samples: _ => ["kick", "snare", "snare-alt", "hat-open", "hat-closed", "tom-hi", "tom-lo", "crash", "misc"],
   selectedDrumkit,
   selectedQuince,
+  strings: _ => strings,
 });

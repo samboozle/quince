@@ -1,6 +1,6 @@
 {
   "name": "hat-closed",
-  "sample": "/audio-sprites/hat-cl.mp3",
+  "sample": "/audio-sprites/hat-cl",
   "spritemap": {
     "Acoustic": {
       "start": 0,

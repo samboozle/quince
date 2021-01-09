@@ -34,6 +34,10 @@ body {
   @apply absolute right-0 top-0 mt-12 overflow-hidden
 }
 
+.dropdown-sm {
+  @apply absolute left-0 bottom-0 mb-8 overflow-scroll z-50 hover:opacity-100
+}
+
 .dropdown-item {
   @apply select-none p-2
 }
@@ -58,8 +62,12 @@ body {
   @apply dropdown Acoustic border border-red-400
 }
 
+.Acoustic-dropdown-sm {
+  @apply dropdown-sm Acoustic border border-red-400
+}
+
 .Acoustic-page {
-  @apply bg-yellow-700 md:bg-grey-200
+  @apply bg-yellow-700 lg:bg-grey-200
 }
 
 .Acoustic-active {
@@ -122,8 +130,12 @@ body {
   @apply dropdown Electro border border-green-400
 }
 
+.Electro-dropdown-sm {
+  @apply dropdown-sm Electro border border-green-400
+}
+
 .Electro-page {
-  @apply bg-gray-600 md:bg-gray-300
+  @apply bg-gray-600 lg:bg-gray-300
 }
 
 .Electro-active {
@@ -184,6 +196,10 @@ body {
 
 .Vinyl-dropdown {
   @apply dropdown Vinyl border border-black
+}
+
+.Vinyl-dropdown-sm {
+  @apply dropdown-sm Vinyl border border-black
 }
 
 .Vinyl-page {

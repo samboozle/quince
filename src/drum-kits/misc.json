@@ -1,6 +1,6 @@
 {
   "name": "misc",
-  "sample": "/audio-sprites/misc.mp3",
+  "sample": "/audio-sprites/misc",
   "spritemap": {
     "Acoustic": {
       "start": 0,

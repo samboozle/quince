@@ -1,6 +1,6 @@
 {
   "name": "crash",
-  "sample": "/audio-sprites/crash.mp3",
+  "sample": "/audio-sprites/crash",
   "spritemap": {
     "Acoustic": {
       "start": 0,

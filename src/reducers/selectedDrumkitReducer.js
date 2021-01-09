@@ -1,4 +1,4 @@
-export default (selectedDrumkit = "Vinyl", { type, payload }) => {
+export default (selectedDrumkit = "Acoustic", { type, payload }) => {
   switch (type) {
     case "SELECT_DRUMKIT":
       return payload;

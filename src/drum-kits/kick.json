@@ -1,6 +1,6 @@
 {
   "name": "kick",
-  "sample": "/audio-sprites/kick.mp3",
+  "sample": "/audio-sprites/kick",
   "spritemap": {
     "Acoustic": {
       "start": 0,
