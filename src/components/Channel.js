@@ -1,47 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
   addBeatToChannel,
   addStepToChannel,
   removeBeatFromChannel,
-  removeStepFromChannel,
-  toggleStep
+  removeStepFromChannel
 } from '../actions';
+import { DrumPad } from './';
 
 const Channel = props => {
+
   const { drum, howl, theme } = props;
   const playDrums = _ => {
     howl.stop();
     howl.play(theme);
   }
-  const activeStep = props.currentTick % props.steps.length;
+  // const activeStep = props.currentTick % props.steps.length;
   const buttonsRight = [
-    { text: "+",  className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(drum) },
-    { text: "-",  className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(drum) },
+    { text:  "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(drum) },
+    { text:  "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(drum) },
     { text: "++", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.addBeatToChannel(drum) },
     { text: "--", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeBeatFromChannel(drum) },
   ];
   const [muted, mute] = useState(false);
 
-  useEffect(_ => {
-    const isActive = !!props.steps[activeStep];
-    if (!muted && props.playing && isActive) {
-      playDrums();
-    }
-  });
+
 
   const renderPads = (
     <div className={ `${ props.small ? `${ theme }-b mt-1` : "" } flex flex-wrap items-center px-1`}>
-      { props.steps.map((step, idx) => {
-        let active = props.playing && activeStep === idx;
-        return (
-          <div
-            className={ `${ theme }-${ active ? "active" : step ? "on" : "off" }` }
+      { props.steps.map((step, idx) => (
+          <DrumPad
+            drum={ drum }
+            idx={ idx }
             key={ drum + "-st-" + idx }
-            onClick={ _ => props.toggleStep(drum, idx) }
+            playDrums={ playDrums }
+            makesNoise={ !!step && !muted }
           />
-        );
-      }) }
+        )) }
     </div>
   );
 
@@ -71,13 +66,13 @@ const Channel = props => {
 
 const makeMapStateToProps = (_initState, ownProps) => {
   const { drum } = ownProps;
-  const mapStateToProps = state => ({
-    currentTick: state.currentTick,
-    playing: state.playing,
-    steps: state.selectedQuince.channels[drum],
-    theme: state.selectedDrumkit,
-  });
-  return mapStateToProps;
+  return ({ selectedDrumkit, selectedQuince }) => {
+    const steps = selectedQuince.channels[drum];
+    return {
+      steps,
+      theme: selectedDrumkit,
+    }
+  };
 }
 
 const actions = {
@@ -85,7 +80,7 @@ const actions = {
   addStepToChannel,
   removeBeatFromChannel,
   removeStepFromChannel,
-  toggleStep
+  // toggleStep
 }
 
 const connector = connect(

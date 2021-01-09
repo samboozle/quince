@@ -104,7 +104,7 @@ const waltz = {
 
 const whatIGaveAway = {
   title: "What I Gave Away",
-  tempo: 144,
+  tempo: 150,
   channels: {
     "kick":       [],
     "snare":      [],

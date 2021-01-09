@@ -5,8 +5,6 @@ import { Channel, String } from './';
 
 const Sequence = props => {
 
-  console.log("sequence rerenders")
-
   const smallCheck = _ => window.innerWidth < 582;
 
   const [small, setSmall] = useState(smallCheck());

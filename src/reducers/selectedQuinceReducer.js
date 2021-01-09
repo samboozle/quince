@@ -1,4 +1,5 @@
 import quinces from '../quince-presets';
+import { intersperseSubdivisions } from '../helpers';
 
 export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => {
 
@@ -115,23 +116,4 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
     default:
       return selectedQuince;
   }
-}
-
-const intersperseSubdivisions = (obj, subdivision, offset, fill) => {
-  const intersperser = (arr, prev) => {
-    return arr.reduce(
-      (acc, ele, idx) =>
-        !((idx + 1) % prev)
-          ? offset === 1
-            ? [ ...acc, ele, fill ]
-            : [ ...acc ]
-          : [ ...acc, ele ],
-      []
-    );
-  }
-
-  return Object.entries(obj).reduce((acc, [ key, val ]) => {
-    acc[key] = intersperser(val, subdivision);
-    return acc;
-  }, {})
 }
