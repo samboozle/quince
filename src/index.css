@@ -59,7 +59,7 @@ body {
 }
 
 .Acoustic-page {
-  @apply bg-yellow-700 md:bg-grey-200
+  @apply bg-yellow-700 lg:bg-grey-200
 }
 
 .Acoustic-active {
@@ -123,7 +123,7 @@ body {
 }
 
 .Electro-page {
-  @apply bg-gray-600 md:bg-gray-300
+  @apply bg-gray-600 lg:bg-gray-300
 }
 
 .Electro-active {

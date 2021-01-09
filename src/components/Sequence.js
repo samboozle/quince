@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Channel } from './';
+import { Channel, String } from './';
 
 const Sequence = props => {
+
+  console.log("sequence rerenders")
 
   const smallCheck = _ => window.innerWidth < 582;
 
@@ -21,29 +23,47 @@ const Sequence = props => {
     return _ => window.removeEventListener("resize", layoutCheck);
   });
 
-  const renderChannels = _ => Object.entries(props.selectedQuince.channels)
-    .map(([ sample, steps ]) => (
+  const renderChannels = _ => Object.entries(props.drums)
+    .map(([ drum, howl ]) => (
       <Channel
-        sample={ sample }
-        drum={ props.drums[sample] }
-        key={ `${ sample }-channel` }
-        steps={ steps }
+        drum={ drum }guitarString
+        howl={ howl }
+        key={ `${ drum }-channel` }
         small={ small }
       />
   ));
 
+  const renderStrings = _ => Object.entries(props.strings)
+    .map(([ guitarString, howl ]) => (
+      <String
+        guitarString={ guitarString }
+        howl={ howl }
+        key={ `${ guitarString }-channel` }
+        small={ small }
+      />
+    ));
+
   return (
-    <div className={ `${props.theme} py-2 px-2` }>
-      <div className={ `${props.theme}-t` }>
-        { renderChannels() }
+    <>
+      <div className={ `${props.theme} py-2 px-2` }>
+        <div className={ `${props.theme}-t` }>
+          { props.hasDrums ? renderChannels() : "Add Drums" }
+        </div>
       </div>
-    </div>
+      <div className={ `${props.theme} py-2 px-2 mt-2` }>
+        <div className={ `${props.theme}-t` }>
+          { props.hasGuitar ? renderStrings() : "Add Guitar" }
+        </div>
+      </div>
+    </>
   );
 }
 
 const mapStateToProps = state => ({
   drums: state.drums,
-  selectedQuince: state.selectedQuince,
+  strings: state.strings,
+  hasGuitar: !!state.selectedQuince.guitar,
+  hasDrums: !!state.selectedQuince.channels,
   theme: state.selectedDrumkit,
 });
 

@@ -7,10 +7,22 @@ const addBeatToChannel = sample => (dispatch, getState) => {
   });
 }
 
-const addChannel = _ => ({ type: "ADD_CHANNEL" });
+// thunkable
+const addBeatToString = sample => (dispatch, getState) => {
+  let { subdivision } = getState().selectedQuince;
+  dispatch({
+    type: "ADD_BEAT_TO_STRING",
+    payload: { sample, subdivision }
+  });
+}
 
 const addStepToChannel = sample => ({
   type: "ADD_STEP_TO_CHANNEL",
+  payload: sample
+});
+
+const addStepToString = sample => ({
+  type: "ADD_STEP_TO_STRING",
   payload: sample
 });
 
@@ -52,17 +64,24 @@ const removeBeatFromChannel = sample => (dispatch, getState) => {
   });
 }
 
-// const removeChannel = channelIndex => {
-//   return {
-//     type: "REMOVE_CHANNEL",
-//     payload: channelIndex
-//   }
-// }
+// thunkable
+const removeBeatFromString = sample => (dispatch, getState) => {
+  let { subdivision } = getState().selectedQuince;
+  dispatch({
+    type: "REMOVE_BEAT_FROM_STRING",
+    payload: { sample, subdivision }
+  });
+}
 
 const removeStepFromChannel = sample => ({
   type: "REMOVE_STEP_FROM_CHANNEL",
   payload: sample
-})
+});
+
+const removeStepFromString = sample => ({
+  type: "REMOVE_STEP_FROM_STRING",
+  payload: sample
+});
 
 const selectDrumkit = name => ({
   type: "SELECT_DRUMKIT",
@@ -102,14 +121,18 @@ const toggleStep = (sample, stepIndex) => {
 
 export {
   addBeatToChannel,
-  addChannel,
+  addBeatToString,
+  // addChannel,
   addStepToChannel,
+  addStepToString,
   changeSubdivision,
   changeTempo,
   // cycleChannelSamples,
   removeBeatFromChannel,
+  removeBeatFromString,
   // removeChannel,
   removeStepFromChannel,
+  removeStepFromString,
   selectDrumkit,
   selectQuince,
   tick,

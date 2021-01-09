@@ -4,6 +4,7 @@ import selectedDrumkit from './selectedDrumkitReducer';
 import selectedQuince from './selectedQuinceReducer';
 
 import drums from '../drum-kits';
+import strings from '../guitar-strings';
 import quinces from '../quince-presets';
 
 const intersperse = (bool = true, { type }) => {
@@ -55,4 +56,5 @@ export default combineReducers({
   samples: _ => ["kick", "snare", "snare-alt", "hat-open", "hat-closed", "tom-hi", "tom-lo", "crash", "misc"],
   selectedDrumkit,
   selectedQuince,
+  strings: _ => strings,
 });

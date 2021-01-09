@@ -1,6 +1,6 @@
 {
   "name": "snare-alt",
-  "sample": "/audio-sprites/snare-alt.mp3",
+  "sample": "/audio-sprites/snare-alt",
   "spritemap": {
     "Acoustic": {
       "start": 0,
