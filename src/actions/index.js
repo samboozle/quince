@@ -103,21 +103,28 @@ const selectQuince = name => (dispatch, getState) => {
   });
 }
 
+const setFret = (sample, stepIndex, fret) => ({
+  type: "SET_FRET",
+  payload: {
+    fret,
+    sample,
+    stepIndex
+  }
+});
+
 const tick = _ => ({ type: "TICK" });
 
 const toggleHelp = _ => ({ type: "TOGGLE_HELP" });
 
 const togglePlaying = _ => ({ type: "TOGGLE_PLAYING" });
 
-const toggleStep = (sample, stepIndex) => {
-  return {
-    type: "TOGGLE_STEP",
-    payload: {
-      sample,
-      stepIndex
-    }
+const toggleStep = (sample, stepIndex) => ({
+  type: "TOGGLE_STEP",
+  payload: {
+    sample,
+    stepIndex
   }
-}
+});
 
 export {
   addBeatToChannel,
@@ -135,6 +142,7 @@ export {
   removeStepFromString,
   selectDrumkit,
   selectQuince,
+  setFret,
   tick,
   toggleHelp,
   togglePlaying,

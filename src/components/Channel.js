@@ -11,11 +11,6 @@ import { DrumPad } from './';
 const Channel = props => {
 
   const { drum, howl, theme } = props;
-  const playDrums = _ => {
-    howl.stop();
-    howl.play(theme);
-  }
-  // const activeStep = props.currentTick % props.steps.length;
   const buttonsRight = [
     { text:  "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToChannel(drum) },
     { text:  "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromChannel(drum) },
@@ -23,8 +18,12 @@ const Channel = props => {
     { text: "--", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeBeatFromChannel(drum) },
   ];
   const [muted, mute] = useState(false);
-
-
+  const playDrums = _ => {
+    if (!muted) {
+      howl.stop();
+      howl.play(theme);
+    }
+  }
 
   const renderPads = (
     <div className={ `${ props.small ? `${ theme }-b mt-1` : "" } flex flex-wrap items-center px-1`}>
@@ -34,7 +33,7 @@ const Channel = props => {
             idx={ idx }
             key={ drum + "-st-" + idx }
             playDrums={ playDrums }
-            makesNoise={ !!step && !muted }
+            makesNoise={ !!step }
           />
         )) }
     </div>
@@ -47,7 +46,7 @@ const Channel = props => {
           <div className={ `flex items-center ${ props.small ? "" : "justify-center" } w-28` }> { drum } </div>
           <button
             className={ `${ theme }-button${ muted ? "-invert" : "" } h-8 w-8 ml-auto` }
-            onClick={ _ => mute(!muted) }
+            onClick={ _ => { mute(!muted); howl.stop(); }  }
           >
             { muted ? "." : "!" }
           </button>
@@ -62,17 +61,14 @@ const Channel = props => {
       { props.small && renderPads }
     </>
   );
-};
+}
 
 const makeMapStateToProps = (_initState, ownProps) => {
   const { drum } = ownProps;
-  return ({ selectedDrumkit, selectedQuince }) => {
-    const steps = selectedQuince.channels[drum];
-    return {
-      steps,
-      theme: selectedDrumkit,
-    }
-  };
+  return ({ selectedDrumkit, selectedQuince }) => ({
+    steps: selectedQuince.channels[drum],
+    theme: selectedDrumkit,
+  });
 }
 
 const actions = {
@@ -80,7 +76,6 @@ const actions = {
   addStepToChannel,
   removeBeatFromChannel,
   removeStepFromChannel,
-  // toggleStep
 }
 
 const connector = connect(

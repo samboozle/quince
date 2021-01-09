@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
   addBeatToString,
   addStepToString,
   removeBeatFromString,
-  removeStepFromString,
-  // selectFret
+  removeStepFromString
 } from '../actions';
+import { FretPad } from './';
 
 const String = props => {
+  console.log("String rerenders...")
+
   const { guitarString, howl, theme } = props;
-  const playGuitar = fret => {
-    howl.stop();
-    if (fret !== "X") {
-      howl.play(fret);
-    }
-  }
-  const activeStep = props.currentTick % props.steps.length;
-  const fret = props.steps[activeStep];
   const buttonsRight = [
     { text:  "+", className: `${theme}-button h-8 w-8`,      fn: _ => props.addStepToString(guitarString) },
     { text:  "-", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeStepFromString(guitarString) },
@@ -25,28 +19,27 @@ const String = props => {
     { text: "--", className: `${theme}-button h-8 w-8 ml-2`, fn: _ => props.removeBeatFromString(guitarString) },
   ];
   const [muted, mute] = useState(false);
-
-  useEffect(_ => {
-    const isActive = !!fret;
-    if (!muted && props.playing && isActive) {
-      playGuitar(fret);
+  const playGuitar = fret => {
+    if (!muted) {
+      howl.stop();
+      if (fret !== "X") {
+        howl.play(fret);
+      }
     }
-  });
+  }
 
   const renderPads = (
     <div className={ `${ props.small ? `${ theme }-b mt-1` : "" } flex flex-wrap items-center px-1`}>
-      { props.steps.map((step, idx) => {
-        let active = props.playing && activeStep === idx;
-        return (
-          <div
-            className={ `${ theme }-${ active ? "active" : step ? "on" : "off" } flex items-center justify-center` }
-            key={ props.sample + "-st-" + idx }
-            // onClick={ _ => props.toggleStep(guitarString, idx) }
-          >
-            { step && step }
-          </div>
-        );
-      }) }
+      { props.steps.map((fret, idx) => (
+          <FretPad
+            guitarString={ guitarString }
+            idx={ idx }
+            key={ guitarString + "-st-" + idx }
+            playGuitar={ playGuitar }
+            fret={ fret }
+            makesNoise={ !!fret }
+          />
+        )) }
     </div>
   );
 
@@ -57,7 +50,7 @@ const String = props => {
           <div className={ `flex items-center ${ props.small ? "" : "justify-center" } w-28` }> { guitarString } </div>
           <button
             className={ `${ theme }-button${ muted ? "-invert" : "" } h-8 w-8 ml-auto` }
-            onClick={ _ => mute(!muted) }
+            onClick={ _ => { mute(!muted); howl.stop() } }
           >
             { muted ? "." : "!" }
           </button>
@@ -76,13 +69,10 @@ const String = props => {
 
 const makeMapStateToProps = (_initState, ownProps) => {
   const { guitarString } = ownProps;
-  const mapStateToProps = state => ({
-    currentTick: state.currentTick,
-    playing: state.playing,
-    steps: state.selectedQuince.guitar[guitarString],
-    theme: state.selectedDrumkit,
+  return ({ selectedDrumkit, selectedQuince }) => ({
+    steps: selectedQuince.guitar[guitarString],
+    theme: selectedDrumkit,
   });
-  return mapStateToProps;
 }
 
 const actions = {
@@ -90,7 +80,6 @@ const actions = {
   addStepToString,
   removeBeatFromString,
   removeStepFromString,
-  // selectFret
 }
 
 const connector = connect(

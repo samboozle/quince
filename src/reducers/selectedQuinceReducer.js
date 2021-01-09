@@ -2,9 +2,7 @@ import quinces from '../quince-presets';
 import { intersperseSubdivisions } from '../helpers';
 
 export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => {
-
   const { subdivision } = selectedQuince;
-
   switch (type) {
     case "ADD_BEAT_TO_CHANNEL":
       return {
@@ -97,20 +95,35 @@ export default (selectedQuince = quinces["Empty Quince"], { type, payload }) => 
       }
     case "SELECT_QUINCE":
       return payload;
+    case "SET_FRET":
+      return {
+        ...selectedQuince,
+        guitar: {
+          ...selectedQuince.guitar,
+          [ payload.sample ]: (
+            selectedQuince.guitar[ payload.sample ].reduce((stAcc, step, stIdx) => (
+              stIdx === payload.stepIndex
+                ? [ ...stAcc, payload.fret ]
+                : [ ...stAcc, step ]
+            ), [])
+          )
+        }
+      }
     case "TOGGLE_STEP":
       return {
         ...selectedQuince,
         channels: {
           ...selectedQuince.channels,
-          [ payload.sample ]: selectedQuince.channels[ payload.sample ]
-                              .reduce((stAcc, step, stIdx) => {
-            let toggle = stIdx === payload.stepIndex;
-            return step && toggle
-              ? [...stAcc, 0]
-              : toggle
-                ? [...stAcc, 1]
-                : [...stAcc, step];
-          }, [])
+          [ payload.sample ]: (
+            selectedQuince.channels[ payload.sample ].reduce((stAcc, step, stIdx) => {
+              let shouldToggle = stIdx === payload.stepIndex;
+              return step && shouldToggle
+                ? [ ...stAcc, 0 ]
+                : shouldToggle
+                  ? [ ...stAcc, 1 ]
+                  : [ ...stAcc, step ];
+            }, [])
+          )
         }
       }
     default:

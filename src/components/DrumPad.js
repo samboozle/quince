@@ -12,21 +12,21 @@ const DrumPad = props => {
     }
   });
 
-  return(
+  return (
     <div
       className={ `${ props.theme }-${ isActive ? "active" : makesNoise ? "on" : "off" }` }
       onClick={ _ => props.toggleStep(props.drum, props.idx) }
     />
-  )
+  );
 }
 
 const makeMapStateToProps = (_initState, ownProps) => {
   const { drum, idx } = ownProps;
   return ({ currentTick, playing, selectedDrumkit, selectedQuince }) => {
-    const steps = selectedQuince.channels[drum];
+    const steps = selectedQuince.channels[ drum ];
     const isActive = playing && currentTick % steps.length === idx;
     return {
-      currentTick: steps.length > 1 ? isActive : currentTick,
+      currentTick: steps.length > 1 ? null : currentTick,
       isActive,
       theme: selectedDrumkit,
     }

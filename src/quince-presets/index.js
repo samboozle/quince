@@ -104,7 +104,7 @@ const waltz = {
 
 const whatIGaveAway = {
   title: "What I Gave Away",
-  tempo: 150,
+  tempo: 300,
   channels: {
     "kick":       [],
     "snare":      [],
@@ -169,7 +169,7 @@ const whatIGaveAway = {
       "05", "X", null, null, null, null, null,
     ],
   },
-  subdivision: 2,
+  subdivision: 1,
   defaultKit: "Vinyl"
 }
 
