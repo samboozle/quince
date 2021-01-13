@@ -9,7 +9,6 @@ import {
 import { FretPad } from './';
 
 const String = props => {
-  console.log("String rerenders...")
 
   const { guitarString, howl, theme } = props;
   const buttonsRight = [
