@@ -1,5 +1,4 @@
-**quince** is a drum machine toy inspired by http://emberbeats.gavinjoyce.com. Some of the logic, and one of the song presets (a favorite of mine), is borrowed from that app.
-This app is in its MVP form and is, admittedly, janky. I hope you enjoy it regardless.
+**quince** is a drum machine toy inspired by http://emberbeats.gavinjoyce.com.
 
 [The demo for **quince** lives on Netlify.](https://mystifying-lamport-66aca0.netlify.app/)
 
